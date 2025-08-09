@@ -1,0 +1,29 @@
+placeholder.com/220x300?text=Oud+for+Happiness", notes:"Bergamot, ginger, oud" },
+  {name:"Tom Ford Oud Wood", img:"https://via.placeholder.com/220x300?text=Oud+Wood", notes:"Rosewood, oud, cardamom, amber" },
+  {name:"Maison Margiela Jazz Club", img:"https://via.placeholder.com/220x300?text=Jazz+Club", notes:"Rum, tobacco, vanilla, leather" }
+];
+
+let winner = 0, opponent = 1;
+
+function loadPerfumes() {
+  ["left","right"].forEach((side,i)=>{
+    document.querySelector(`#${side} img`).src = perfumes[i===0? winner: opponent].img;
+    document.getElementById(`${side}Name`).textContent = perfumes[i===0? winner: opponent].name;
+    document.getElementById(`${side}Notes`).textContent = perfumes[i===0? winner: opponent].notes;
+  });
+}
+
+function choose(side) {
+  if (side === "right") winner = opponent;
+  opponent++;
+  if (opponent >= perfumes.length) {
+    document.querySelector(".battle").style.display = "none";
+    document.getElementById("result").textContent = "Любимый аромат: " + perfumes[winner].name + " 💖";
+  } else loadPerfumes();
+}
+
+loadPerfumes();
+</script>
+
+</body>
+</html>
